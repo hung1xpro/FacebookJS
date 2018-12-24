@@ -1,0 +1,14 @@
+var url = "https://www.facebook.com/pages/post_like_invite/send";
+var fb_dtsg = document.getElementsByName('fb_dtsg')[0].value;
+var user_id = document.cookie.match(document.cookie.match(/c_user=(\d+)/)[1]);
+                            var n = new FormData;
+                            n.append("invitee", "{UID_Invite}"), n.append("page_id", "{UID_Fanpage}"), n.append("ref", "likes_dialog"), n.append("content_id", "{UID_Status}"), n.append("fb_dtsg", fb_dtsg);
+                            var access_token = "";
+                            var xhr = new XMLHttpRequest;
+                            xhr.open('POST', url, true);
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                                    console.log("Mời thành công");
+                                }
+                            }
+                            xhr.send(n);
