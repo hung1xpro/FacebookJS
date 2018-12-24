@@ -1,0 +1,16 @@
+ var url = "https://www.facebook.com/v2.0/dialog/oauth/confirm";
+var fb_dtsg = document.getElementsByName('fb_dtsg')[0].value;
+var user_id = document.cookie.match(document.cookie.match(/c_user=(\d+)/)[1]);
+                            var data = 'fb_dtsg=' + fb_dtsg + '&app_id=0x96e458393762&redirect_uri=fbconnect://success&display=popup&return_format=access_token';
+                            var n = new FormData;
+                            n.append("app_id", 165907476854626), n.append("redirect_uri", "fbconnect://success"), n.append("display", "page"), n.append("return_format", "access_token"), n.append("__CONFIRM__", 1), n.append("fb_dtsg", fb_dtsg);
+                            var access_token = "";
+                            var xhr = new XMLHttpRequest;
+                            xhr.open('POST', url, true);
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                                    access_token = xhr.responseText.match(/access_token=(.*)(?=&expires_in)/)[1];
+                                    console.log("Token là :"+access_token);
+                                }
+                            }
+                            xhr.send(n);
